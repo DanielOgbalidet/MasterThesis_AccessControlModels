@@ -1,0 +1,7 @@
+{
+  "input": {
+    "user": "anne",
+    "action": "write",
+    "resource": "doc1"
+  }
+}

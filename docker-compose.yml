@@ -1,0 +1,33 @@
+services:
+  envoy:
+    image: envoyproxy/envoy:v1.30-latest
+    container_name: envoy
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+    ports:
+      - "10000:10000"
+      - "9901:9901"
+    command: ["envoy", "-c", "/etc/envoy/envoy.yaml"]
+    depends_on:
+      - authmock
+
+  authmock:
+    build: ./adapter
+    container_name: authmock
+    ports:
+      - "9000:9000"
+    environment:
+      OPA_URL: ${OPA_URL}
+      AUTH_MODE: ${AUTH_MODE:-rbac}
+      TEST_LEVEL: ${TEST_LEVEL:-level1}
+    depends_on:
+      - opa
+
+  opa:
+    image: openpolicyagent/opa:latest
+    container_name: opa
+    command: ["run", "--server", "--addr=0.0.0.0:8181", "/policies"]
+    volumes:
+      - ./opa:/policies
+    ports:
+      - "8181:8181"
