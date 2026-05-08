@@ -1,0 +1,504 @@
+{
+  "scenarios": {
+    "level1": {
+      "users": {
+        "anne": {
+          "rbac_roles": ["editor_doc1"],
+          "abac_role": "editor",
+          "projects": [],
+          "documents": ["doc1"],
+          "managed_projects": []
+        },
+        "bob": {
+          "rbac_roles": ["viewer_doc1"],
+          "abac_role": "viewer",
+          "projects": [],
+          "documents": ["doc1"],
+          "managed_projects": []
+        },
+        "dana": {
+          "rbac_roles": ["editor_doc2"],
+          "abac_role": "editor",
+          "projects": [],
+          "documents": ["doc2"],
+          "managed_projects": []
+        }
+      },
+      "resources": {
+        "doc1": {
+          "id": "doc1",
+          "project": null
+        },
+        "doc2": {
+          "id": "doc2",
+          "project": null
+        }
+      },
+      "relations": {
+        "document_viewer": {
+          "doc1": ["bob"]
+        },
+        "document_editor": {
+          "doc1": ["anne"],
+          "doc2": ["dana"]
+        },
+        "project_viewer": {},
+        "project_editor": {},
+        "project_manager": {},
+        "document_parent_project": {}
+      }
+    },
+    "level2": {
+      "users": {
+        "anne": {
+          "rbac_roles": ["editor_docA1", "editor_docA2"],
+          "abac_role": "editor",
+          "projects": ["projectA"],
+          "documents": [],
+          "managed_projects": []
+        },
+        "bob": {
+          "rbac_roles": ["viewer_docA1", "viewer_docA2"],
+          "abac_role": "viewer",
+          "projects": ["projectA"],
+          "documents": [],
+          "managed_projects": []
+        },
+        "dana": {
+          "rbac_roles": ["editor_docB1", "editor_docB2"],
+          "abac_role": "editor",
+          "projects": ["projectB"],
+          "documents": [],
+          "managed_projects": []
+        }
+      },
+      "resources": {
+        "docA1": {
+          "id": "docA1",
+          "project": "projectA"
+        },
+        "docA2": {
+          "id": "docA2",
+          "project": "projectA"
+        },
+        "docB1": {
+          "id": "docB1",
+          "project": "projectB"
+        },
+        "docB2": {
+          "id": "docB2",
+          "project": "projectB"
+        }
+      },
+      "relations": {
+        "document_viewer": {
+          "docA1": ["bob"],
+          "docA2": ["bob"]
+        },
+        "document_editor": {
+          "docA1": ["anne"],
+          "docA2": ["anne"],
+          "docB1": ["dana"],
+          "docB2": ["dana"]
+        },
+        "project_viewer": {
+          "projectA": ["bob"]
+        },
+        "project_editor": {
+          "projectA": ["anne"],
+          "projectB": ["dana"]
+        },
+        "project_manager": {},
+        "document_parent_project": {
+          "docA1": "projectA",
+          "docA2": "projectA",
+          "docB1": "projectB",
+          "docB2": "projectB"
+        }
+      }
+    },
+    "level3": {
+      "users": {
+        "anne": {
+          "rbac_roles": ["editor_docA1", "editor_docA2"],
+          "abac_role": "editor",
+          "projects": ["projectA"],
+          "documents": [],
+          "managed_projects": []
+        },
+        "bob": {
+          "rbac_roles": ["viewer_docA1", "viewer_docA2"],
+          "abac_role": "viewer",
+          "projects": ["projectA"],
+          "documents": [],
+          "managed_projects": []
+        },
+        "dana": {
+          "rbac_roles": ["editor_docB1", "editor_docB2"],
+          "abac_role": "editor",
+          "projects": ["projectB"],
+          "documents": [],
+          "managed_projects": []
+        },
+        "sara": {
+          "rbac_roles": ["viewer_docC1", "viewer_docC2"],
+          "abac_role": "viewer",
+          "projects": ["projectC"],
+          "documents": [],
+          "managed_projects": []
+        },
+        "erik": {
+          "rbac_roles": [
+            "manager_docA1_read",
+            "manager_docA2_read",
+            "manager_docB1_read",
+            "manager_docB2_read",
+            "manager_docC1_read",
+            "manager_docC2_read"
+          ],
+          "abac_role": "manager",
+          "projects": [],
+          "documents": [],
+          "managed_projects": ["projectA", "projectB", "projectC"]
+        }
+      },
+      "resources": {
+        "docA1": {
+          "id": "docA1",
+          "project": "projectA"
+        },
+        "docA2": {
+          "id": "docA2",
+          "project": "projectA"
+        },
+        "docB1": {
+          "id": "docB1",
+          "project": "projectB"
+        },
+        "docB2": {
+          "id": "docB2",
+          "project": "projectB"
+        },
+        "docC1": {
+          "id": "docC1",
+          "project": "projectC"
+        },
+        "docC2": {
+          "id": "docC2",
+          "project": "projectC"
+        }
+      },
+      "relations": {
+        "document_viewer": {
+          "docA1": ["bob"],
+          "docA2": ["bob"],
+          "docC1": ["sara"],
+          "docC2": ["sara"]
+        },
+        "document_editor": {
+          "docA1": ["anne"],
+          "docA2": ["anne"],
+          "docB1": ["dana"],
+          "docB2": ["dana"]
+        },
+        "project_viewer": {
+          "projectA": ["bob"],
+          "projectC": ["sara"]
+        },
+        "project_editor": {
+          "projectA": ["anne"],
+          "projectB": ["dana"]
+        },
+        "project_manager": {
+          "projectA": ["erik"],
+          "projectB": ["erik"],
+          "projectC": ["erik"]
+        },
+        "document_parent_project": {
+          "docA1": "projectA",
+          "docA2": "projectA",
+          "docB1": "projectB",
+          "docB2": "projectB",
+          "docC1": "projectC",
+          "docC2": "projectC"
+        }
+      }
+    },
+    "level4": {
+  "users": {
+    "anne": {
+      "rbac_roles": ["editor_docA2", "editor_docA3"],
+      "abac_role": "editor",
+      "projects": ["projectA"],
+      "documents": ["docA3"],
+      "managed_projects": []
+    },
+    "bob": {
+      "rbac_roles": ["viewer_docA2"],
+      "abac_role": "viewer",
+      "projects": ["projectA"],
+      "documents": [],
+      "managed_projects": []
+    },
+    "dana": {
+      "rbac_roles": ["editor_docB2", "editor_docB3"],
+      "abac_role": "editor",
+      "projects": ["projectB"],
+      "documents": ["docB3"],
+      "managed_projects": []
+    },
+    "john": {
+      "rbac_roles": ["viewer_docB2"],
+      "abac_role": "viewer",
+      "projects": ["projectB"],
+      "documents": [],
+      "managed_projects": []
+    },
+    "sara": {
+      "rbac_roles": ["editor_docC2"],
+      "abac_role": "editor",
+      "projects": ["projectC"],
+      "documents": [],
+      "managed_projects": []
+    },
+    "liam": {
+      "rbac_roles": ["viewer_docC2", "viewer_docC3"],
+      "abac_role": "viewer",
+      "projects": ["projectC"],
+      "documents": ["docC3"],
+      "managed_projects": []
+    },
+    "olivia": {
+      "rbac_roles": ["editor_docD2"],
+      "abac_role": "editor",
+      "projects": ["projectD"],
+      "documents": [],
+      "managed_projects": []
+    },
+    "noah": {
+      "rbac_roles": ["viewer_docD2"],
+      "abac_role": "viewer",
+      "projects": ["projectD"],
+      "documents": [],
+      "managed_projects": []
+    },
+    "mia": {
+      "rbac_roles": ["viewer_docA2", "viewer_docB2"],
+      "abac_role": "viewer",
+      "projects": ["projectA"],
+      "documents": ["docB2"],
+      "managed_projects": []
+    },
+    "lucas": {
+      "rbac_roles": ["viewer_docC2", "viewer_docD2"],
+      "abac_role": "viewer",
+      "projects": ["projectC"],
+      "documents": ["docD2"],
+      "managed_projects": []
+    },
+    "managerA": {
+      "rbac_roles": ["manager_docA2_read"],
+      "abac_role": "manager",
+      "projects": [],
+      "documents": [],
+      "managed_projects": ["projectA"]
+    },
+    "managerB": {
+      "rbac_roles": ["manager_docB2_read", "manager_docB3_read"],
+      "abac_role": "manager",
+      "projects": [],
+      "documents": ["docB3"],
+      "managed_projects": ["projectB"]
+    },
+    "managerAll": {
+      "rbac_roles": [
+        "manager_docA2_read",
+        "manager_docB2_read",
+        "manager_docC2_read",
+        "manager_docD2_read",
+        "black_docD4_read_office_hours"
+      ],
+      "abac_role": "manager",
+      "projects": [],
+      "documents": ["docD4"],
+      "managed_projects": ["projectA", "projectB", "projectC", "projectD"]
+    }
+  },
+
+  "resources": {
+    "docA1": {
+      "id": "docA1",
+      "project": "projectA",
+      "classification": "green"
+    },
+    "docA2": {
+      "id": "docA2",
+      "project": "projectA",
+      "classification": "yellow"
+    },
+    "docA3": {
+      "id": "docA3",
+      "project": "projectA",
+      "classification": "red"
+    },
+    "docA4": {
+      "id": "docA4",
+      "project": "projectA",
+      "classification": "black"
+    },
+
+    "docB1": {
+      "id": "docB1",
+      "project": "projectB",
+      "classification": "green"
+    },
+    "docB2": {
+      "id": "docB2",
+      "project": "projectB",
+      "classification": "yellow"
+    },
+    "docB3": {
+      "id": "docB3",
+      "project": "projectB",
+      "classification": "red"
+    },
+    "docB4": {
+      "id": "docB4",
+      "project": "projectB",
+      "classification": "black"
+    },
+
+    "docC1": {
+      "id": "docC1",
+      "project": "projectC",
+      "classification": "green"
+    },
+    "docC2": {
+      "id": "docC2",
+      "project": "projectC",
+      "classification": "yellow"
+    },
+    "docC3": {
+      "id": "docC3",
+      "project": "projectC",
+      "classification": "red"
+    },
+    "docC4": {
+      "id": "docC4",
+      "project": "projectC",
+      "classification": "black"
+    },
+
+    "docD1": {
+      "id": "docD1",
+      "project": "projectD",
+      "classification": "green"
+    },
+    "docD2": {
+      "id": "docD2",
+      "project": "projectD",
+      "classification": "yellow"
+    },
+    "docD3": {
+      "id": "docD3",
+      "project": "projectD",
+      "classification": "red"
+    },
+    "docD4": {
+      "id": "docD4",
+      "project": "projectD",
+      "classification": "black"
+    }
+  },
+
+  "relations": {
+    "document_viewer": {
+      "docA1": [],
+      "docA2": ["bob", "mia", "managerA", "managerAll"],
+      "docA3": ["anne"],
+      "docA4": [],
+
+      "docB1": [],
+      "docB2": ["john", "mia", "managerB", "managerAll"],
+      "docB3": ["managerB"],
+      "docB4": [],
+
+      "docC1": [],
+      "docC2": ["liam", "lucas", "managerAll"],
+      "docC3": ["liam"],
+      "docC4": [],
+
+      "docD1": [],
+      "docD2": ["noah", "lucas", "managerAll"],
+      "docD3": [],
+      "docD4": ["managerAll"]
+    },
+
+    "document_editor": {
+      "docA1": [],
+      "docA2": ["anne"],
+      "docA3": ["anne"],
+      "docA4": [],
+
+      "docB1": [],
+      "docB2": ["dana"],
+      "docB3": ["dana"],
+      "docB4": [],
+
+      "docC1": [],
+      "docC2": ["sara"],
+      "docC3": [],
+      "docC4": [],
+
+      "docD1": [],
+      "docD2": ["olivia"],
+      "docD3": [],
+      "docD4": []
+    },
+
+    "project_viewer": {
+      "projectA": ["bob", "mia"],
+      "projectB": ["john"],
+      "projectC": ["liam", "lucas"],
+      "projectD": ["noah"]
+    },
+
+    "project_editor": {
+      "projectA": ["anne"],
+      "projectB": ["dana"],
+      "projectC": ["sara"],
+      "projectD": ["olivia"]
+    },
+
+    "project_manager": {
+      "projectA": ["managerA", "managerAll"],
+      "projectB": ["managerB", "managerAll"],
+      "projectC": ["managerAll"],
+      "projectD": ["managerAll"]
+    },
+
+    "document_parent_project": {
+      "docA1": "projectA",
+      "docA2": "projectA",
+      "docA3": "projectA",
+      "docA4": "projectA",
+
+      "docB1": "projectB",
+      "docB2": "projectB",
+      "docB3": "projectB",
+      "docB4": "projectB",
+
+      "docC1": "projectC",
+      "docC2": "projectC",
+      "docC3": "projectC",
+      "docC4": "projectC",
+
+      "docD1": "projectD",
+      "docD2": "projectD",
+      "docD3": "projectD",
+      "docD4": "projectD"
+    }
+  }
+}
+}
+}
